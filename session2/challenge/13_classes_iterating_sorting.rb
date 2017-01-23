@@ -70,10 +70,10 @@ require 'date'
     
     #Initialize to create the constructor
     def initialize(username)
-        #self refers to the object being constructed (the initialize method). This initialize
-        # method is defined inside instances of User. So inside initiaize(), self refers to the
-        # User instance that is being constructed.
-        #the initialize() is theconstructor and objects are't fully constructed until initialize() returns
+        #self refers to the object being constructed (the initialize method). This initializemethod is defined inside 
+        #instances of class 'User'. So inside initialize(), self refers to the
+        #class 'User' instance that is being constructed.
+        #the initialize() is the constructor and objects are't fully constructed until initialize() returns.
         self.username = username
         self.blogs = []
         end
