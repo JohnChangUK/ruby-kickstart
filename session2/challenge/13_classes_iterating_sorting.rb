@@ -70,7 +70,9 @@ require 'date'
     
     #Initialize to create the constructor
     def initialize(username)
-        #self refers to the object being constructed (the initialize method). This initialize method is defined inside instances of User. So inside initiaize(), self refers to the User instance that is being constructed.
+        #self refers to the object being constructed (the initialize method). This initialize
+        # method is defined inside instances of User. So inside initiaize(), self refers to the
+        # User instance that is being constructed.
         #the initialize() is theconstructor and objects are't fully constructed until initialize() returns
         self.username = username
         self.blogs = []
@@ -96,7 +98,8 @@ require 'date'
     
     def summary
     #this splits the text and gets the first 10 words, counting from 0 to 9 INCLUSIVE.
-    #After getting the first 10 words, the words get joined after each space(.join method), making sure all words have spaces when being joined
+    #After getting the first 10 words, the words get joined after each space(.join method), making
+    # sure all words have spaces when being joined
     text.split[0..9].join(' ')
     end
 
