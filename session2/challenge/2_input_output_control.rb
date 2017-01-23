@@ -18,11 +18,20 @@
 # remember you can try your program out with              $ ruby 2_input_output_control.rb
 # and when you think it is correct, you can test it with  $ rake 2:2
 
+
+def ask
+    puts "Could you put a number please...?"
+    end
+
 def hi_hi_goodbye
-  # your code here
-end
-
-
+    ask
+    while (input = gets) && (input !~ /bye/)
+        input.to_i.times {puts "hi"}
+        puts ""
+    ask
+    end
+    puts "Goodbye!"
+    end
 
 
 # This will just invoke the method if you run this program directly

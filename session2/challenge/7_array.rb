@@ -8,3 +8,16 @@
 # alternate_words("Lorem ipsum dolor sit amet.")  # => ["Lorem", "dolor", "amet"]
 # alternate_words("Can't we all get along?")      # => ["Can't", "all", "along"]
 # alternate_words("Elementary, my dear Watson!")  # => ["Elementary", "dear"]
+
+def alternate_words(sentence)
+
+# We are filtering out the special characters and then splitting the words with " "
+
+new_sentence = sentence.gsub(/[^0-9A-Za-z'’ ]/, ' ').split(" ")
+
+new_sent = []
+
+# Now targetting the even index only
+new_sentence.select.each_with_index { |index, i| i.even? }
+
+end

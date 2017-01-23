@@ -64,3 +64,57 @@
 # date docs are at: http://ruby-doc.org/core/classes/Date.html
 # don't spend too much time worrying about them :)
 require 'date'
+
+    class User
+    attr_accessor :username, :blogs
+    
+    #Initialize to create the constructor
+    def initialize(username)
+        #self refers to the object being constructed (the initialize method). This initialize method is defined inside instances of User. So inside initiaize(), self refers to the User instance that is being constructed.
+        #the initialize() is theconstructor and objects are't fully constructed until initialize() returns
+        self.username = username
+        self.blogs = []
+        end
+    
+    #Constructing a blog function that puts the blogs into an array, in reverse order
+    def add_blog(date, text)
+        added_blog = Blog.new(date, self, text)
+        blogs << added_blog
+        self.blogs = blogs.sort_by { |blog| blog.date }.reverse
+        added_blog
+        end
+    end
+
+    class Blog
+        attr_accessor :date, :user, :text
+        
+        def initialize(date, user, text)
+            self.date = date
+            self.user = user
+            self.text = text
+            end
+    
+    def summary
+    #this splits the text and gets the first 10 words, counting from 0 to 9 INCLUSIVE.
+    #After getting the first 10 words, the words get joined after each space(.join method), making sure all words have spaces when being joined
+    text.split[0..9].join(' ')
+    end
+
+
+    def entry
+        "#{user.username} #{date}\n#{text}"
+        end
+    
+        def ==(other)
+        date == other.date &&
+        user == other.user &&
+        text == other.text
+        end
+end
+        
+        
+        
+    
+
+
+
