@@ -17,3 +17,44 @@
 # match_maker true,  true,  true, true, nil     # => [false, true]
 # match_maker true,  true,  true, 0, nil        # => [false, true]
 
+
+    #Creating a method, takes in the argument 'opposite_attract', which will
+    #explain how the result will be evalurated and a varying
+    #number of elements which can change, hence the asterisk *.
+    def match_maker(opposite_attract, *elements)
+        
+        #Create an empty array to store/append our values into
+        array = []
+        
+        #Regarding elements, slice/take two at once, hence using the slice method.
+        #each_slice iteratates the given block for each slice of <n> elements
+        #e.g. each_slice 2
+        elements.each_slice 2 do |first, second|
+            
+            #double bang !! converts a value to a boolean
+            #!!"abc" => true
+            #!!false = false
+            #!!nil = false
+            #!!true = true
+            
+            first = !!first
+            second = !!second
+            
+            #Store result and Use the solution 'key' opposite_attract
+            result = if opposite_attract
+            #For true, it first and second are different, return true. For false, return false
+            first != second
+    
+            #For true, if first and second are the same, return false, for false return true.
+            else
+            first == second
+            end
+        
+            #Append the result to array
+            array << result
+            end
+            array
+        end
+            
+
+

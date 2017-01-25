@@ -25,15 +25,21 @@
 # artist.age    # => 47
 
 
-class Person
-  attr_accessor :name
+    class Person
+    #Setting getters and setters
+    attr_accessor :name, :age, :quote
+    
+    #Creating the  Constructor
+    def initialize(options = {}, &initializer)
+        self.name = options[:name]
+        self.age = options[:age]
+        self.quote = options[:quote]
+        @initializer = (initializer || Proc.new { |person| }) #This way,
+    #it always has a proc, and code like reinit doesn't have to worry that it might not be there
+        reinit
+    end
 
-  def initialize(&initializer)
-    @initializer = initializer
-    initializer.call self
-  end
-
-  def reinit
-    @initializer.call self
-  end
-end
+    def reinit
+        @initializer.call(self)
+        end
+    end
