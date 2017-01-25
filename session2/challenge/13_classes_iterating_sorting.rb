@@ -70,7 +70,11 @@ require 'date'
     
     #Initialize to create the constructor
     def initialize(username)
+<<<<<<< HEAD
         #self refers to the object being constructed (the initialize method). This initializemethod is defined inside
+=======
+        #self refers to the object being constructed (the initialize method). This initializemethod is defined inside 
+>>>>>>> 7e1712dcc9c56b97afef0826913f116bc2e9f99e
         #instances of class 'User'. So inside initialize(), self refers to the
         #class 'User' instance that is being constructed.
         #the initialize() is the constructor and objects are't fully constructed until initialize() returns.
