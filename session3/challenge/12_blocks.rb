@@ -23,36 +23,37 @@
 # you will not be able to run this code outside of the test
 
 
-def pay_by_visa(order, ccn)
-  order.compute_cost
-  order.compute_shipping
-  order.compute_tax
-  order.payment :type => :visa, :ccn => ccn
-  order.verify_payment
-  order.ship_goods
-end
+#define pay_by, which takes/passes in order; and computes the cost, shipping and tax
+    def pay_by(order)
+    order.compute_cost
+    order.compute_shipping
+    order.compute_tax
+    yield
+    order.ship_goods
+    end
 
-def pay_by_check(order)
-  order.compute_cost
-  order.compute_shipping
-  order.compute_tax
-  order.payment :type => :check, :signed => true
-  order.ship_goods
-end
+#Pay by method with the specific visa requirements
+    def pay_by_visa(order, ccn)
+    pay_by order do
+        order.payment :type => :visa, :ccn => ccn
+        order.verify_payment
+    end
+    end
 
-def pay_by_cash(order)
-  order.compute_cost
-  order.compute_shipping
-  order.compute_tax
-  order.payment :type => :cash
-  order.ship_goods
-end
+#pay_by method, with the specific check requirements
+    def pay_by_check(order)
+        pay_by(order) { order.payment :type => :check, :signed => true }
+    end
 
-def pay_by_store_credit(order)
-  order.compute_cost
-  order.compute_shipping
-  order.compute_tax
-  order.payment :type => :store_credit
-  current_user.store_credit -= order.cost   # current_user is a method with no params (ie, the customer)
-  order.ship_goods
+#pay_by method, with the specific 'cash' requirements
+    def pay_by_cash(order)
+        pay_by(order) { order.payment :type => :cash }
+    end
+
+#pay_by method, with the specific store credit requirements
+    def pay_by_store_credit(order, current_user)
+    pay_by order do
+        order.payment :type => :store_credit
+    current_user.store_credit -= order.cost
+    end
 end

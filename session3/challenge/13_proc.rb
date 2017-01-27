@@ -52,5 +52,27 @@
 #   end
 # end       # => ["a", "m", "r", 1, 3, 4, 9, 2.5, 9.0, 25.8]
 
-def your_sort
+    def your_sort(array, &ordering_block)
+    
+    #If it is nil, then it hasn't been set. Set it to default spaceship operator '<=>' for comparison result
+    
+    #The spaceship operator '<=>' is only concerned about the first value evaluated.
+    #e.g books = ['a' ,'b', 'c', 'd']
+    # books.sort! { |a, b| b <=> a} will result ['d', 'c', 'b', 'a'].
+    #This is a method to reverse values. Can be implemented with '.length' method etc.
+    ordering_block ||= Proc.new { |a, b| a <=> b }
+    
+    #Check by index 1 and index 2 in array
+    array.each_index do |index1|
+        array.each_index do |index2|
+            #Creating variable 'Order', then call array at index 1 and index 2
+            order = ordering_block.call(array[index1], array[index2])
+            #Then, sort the array
+            
+            array[index1], array[index2] = array[index2], array[index1] if order < 0
+        
 end
+    end
+end
+
+# your_sort [24, 52, 464, 2, 3533, 0, 433] => [0, 2, 24, 52, 433, 464, 3533]

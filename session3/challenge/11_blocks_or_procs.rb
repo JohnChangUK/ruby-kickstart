@@ -30,5 +30,14 @@
 # end
 
 
-def array_init
-end
+    def array_init(size=5, &block)
+        
+        #If the block was given, run the block.
+        #If not, create a new Proc which iterates through it by multiplying it by 100,
+        #Then change the value to a string.
+        
+        block ||= Proc.new { |n| (n * 100).to_s }
+        
+        #Then, create the new array with the size and block)
+        Array.new(size, &block)
+    end

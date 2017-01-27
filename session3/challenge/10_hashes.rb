@@ -29,5 +29,32 @@
 # create it from scratch :)
 
 
-def pathify
+    #Create a method which creates a new hash
+    def pathify(paths = {})
+        
+        #Checks if the path is an array
+        #Then separates the paths with /
+        return paths.map {|path| '/' + path } if paths.is_a?(Array)
+        
+        #The recursive step / Recursion
+        #First, create a new array to append to
+        to_return = []
+        
+        #Iterate over paths with parent_path and child_dirs
+        paths.each do |parent_path, child_dirs|
+        #Add / in front of the parent path
+        parent_path = '/' + parent_path #paths begin with a /
+        #Runs the child path through the pathify method, which adds / if it is
+        #an array
+        child_paths = pathify child_dirs #Converts child directories to paths
+        #Iterates over the child elements in the child_path
+        #And joins the child and parent path
+        child_paths.each do |child_path| #Joins each child path to it's parent path
+            #Now we append the parent path and child path
+            #to the array to_return
+            to_return << (parent_path + child_path)
+            end
+        end
+    #Call the array
+    to_return
 end
